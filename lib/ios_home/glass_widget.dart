@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:glass_kit/glass_kit.dart';
+
+class GlassWidget extends StatelessWidget {
+  const GlassWidget({super.key, this.child});
+
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return GlassContainer(
+      isFrostedGlass: true,
+      frostedOpacity: 0.05,
+      blur: 20,
+      gradient: LinearGradient(
+        colors: [
+          Colors.white.withOpacity(0.25),
+          Colors.white.withOpacity(0.05),
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      borderGradient: LinearGradient(
+        colors: [
+          Colors.white.withOpacity(0.60),
+          Colors.white.withOpacity(0.0),
+          Colors.white.withOpacity(0.0),
+          Colors.white.withOpacity(0.60),
+        ],
+        stops: const [0.0, 0.45, 0.55, 1.0],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      boxShadow: [
+        BoxShadow(color: Colors.black.withOpacity(0.10), blurRadius: 20.0)
+      ],
+      borderRadius: BorderRadius.circular(15.0),
+      padding: const EdgeInsets.all(16.0),
+      child: child,
+    );
+  }
+}
